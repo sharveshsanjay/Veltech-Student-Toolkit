@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Veltech Student Toolkit helps students track GPA, CGPA, Attendance, Internal Marks, Campus Events & Announcements. Stay organized and excel in academics!">
+    <meta name="keywords" content="Veltech Student Toolkit, GPA Calculator, CGPA Calculator, Attendance Tracker, University Events, Student Announcements, Veltech University">
+    <meta name="description" content="Veltech Student Toolkit - A one-stop solution for GPA, CGPA, attendance tracking, and event updates for Veltech University students.">
+    <meta name="keywords" content="Veltech, Student Toolkit, GPA Calculator, CGPA Calculator, Attendance Tracker, Internals Calculator, Veltech University, College Events, University Announcements">
+    <meta name="author" content="Sharvesh Sanjay">
+    <meta property="og:title" content="Veltech Student Toolkit">
+    <meta property="og:description" content="Everything you need for academic success at Veltech University.">
+    <meta property="og:image" content="https://toolkitvtu.netlify.app/logos/logo.png">
+    <meta property="og:url" content="https://toolkitvtu.netlify.app/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Veltech Student Toolkit">
+    <meta name="twitter:description" content="A student-friendly web tool for GPA, CGPA, attendance tracking, and university event updates.">
+    <meta name="twitter:image" content="https://toolkitvtu.netlify.app/logos/logo.png">
+
+    
+    <title>Veltech Student Toolkit | GPA, CGPA & Attendance Tracker</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Add QR Code library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <!-- Add Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-auth-compat.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <div class="logo-container">
+                <img src="logos/logo.png" loading="lazy" alt="Veltech Toolkit Logo" class="logo-icon">
+                <div class="logo-text">
+                    <h1>Veltech Student Toolkit</h1>
+                    <p class="subtitle">Everything you need for academic success</p>
+                </div>
+                <img src="logos/Logo-Final-A-1024x906.png" alt="Veltech Logo" class="logo-icon1">
+                <img src="logos/image (1).png" alt="Veltech Logo" class="logo-icon1">
+            </div>
+        </header>
+
+        <main class="app-main">
+            <!-- Main Menu -->
+            <div class="main-menu"> 
+                <div class="menu-card gpa" onclick="showSection('gpa')">
+                    <div class="card-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <h2>GPA Calculator</h2>
+                    <p>Calculate your semester Grade Point Average</p>
+                    <div class="card-footer">Try it now →</div>
+                </div>
+                
+                <div class="menu-card cgpa" onclick="showSection('cgpa')">
+                    <div class="card-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h2>CGPA Calculator</h2>
+                    <p>Track your cumulative academic performance</p>
+                    <div class="card-footer">Try it now →</div>
+                </div>
+                
+                <div class="menu-card attendance" onclick="showSection('attendance')">
+                    <div class="card-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <h2>Attendance Tracker</h2>
+                    <p>Monitor your class attendance percentage</p>
+                    <div class="card-footer">Try it now →</div>
+                </div>
+                
+                <div class="menu-card internals" onclick="showSection('internals')">
+                    <div class="card-icon">
+                     <i class="fa-solid fa-percent"></i>                    </div>
+                    <h2>Internals Calculator</h2>
+                    <p>Calculate your internal assessment marks</p>
+                    <div class="card-footer">Try it now →</div>
+                </div>
+
+                <!-- New Features -->
+                <div class="menu-card events" onclick="showSection('events')">
+                    <div class="card-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h2>Campus Events</h2>
+                    <p>Check out the latest university events</p>
+                    <div class="card-footer">View Events →</div>
+                </div>
+
+                <div class="menu-card announcements" onclick="showSection('announcements')">
+                    <div class="card-icon">
+                        <i class="fas fa-bullhorn"></i>
+                    </div>
+                    <h2>Announcements</h2>
+                    <p>Stay updated with university notices</p>
+                    <div class="card-footer">View Announcements →</div>
+                </div>
+                
+            </div>
+
+            <!-- Mini Menu (hidden by default) -->
+            <div id="mini-menu" class="mini-menu">
+                <!-- Will be populated by JavaScript -->
+            </div>
+
+            <!-- Calculator Sections -->
+            <div id="gpa-section" class="calculator-section">
+                <!-- GPA content will be loaded here -->
+            </div>
+
+            <div id="cgpa-section" class="calculator-section">
+                <!-- CGPA content will be loaded here -->
+            </div>
+
+            <div id="attendance-section" class="calculator-section">
+                <!-- Attendance content will be loaded here -->
+            </div>
+
+            <div id="internals-section" class="calculator-section">
+                <!-- Internals content will be loaded here -->
+            </div>
+
+            <!-- Events Section -->
+            <div id="events-section" class="calculator-section" style="display: none;">
+                <div class="section-header">
+                    <h2>Upcoming Campus Events</h2>
+                    <button class="back-btn" onclick="hideSection('events')"><i class="fas fa-arrow-left"></i> Back</button>
+                </div>
+                
+                <label for="department-filter">Filter by Department:</label>
+                <select id="department-filter" onchange="filterEvents()">
+                   <option value="all">All Departments</option>
+                   <option value="CSE">CSE</option>
+                   <option value="ECE">ECE</option>
+                   <option value="MECH">Mechanical</option>
+                   <option value="EEE">EEE</option>
+                </select>
+                
+                <div id="events-loading" class="loading-spinner">
+                    <i class="fas fa-spinner fa-spin"></i> Loading events...
+                </div>
+                
+                <div id="department-events" class="events-container"></div>
+                
+                <div id="general-events" class="events-container">
+                    <h3>General Events</h3>
+                    <ul id="general-events-list" class="events-list"></ul>
+                </div>
+                
+                <div id="event-registration" class="event-registration">
+                    <h3>Register for an Event</h3>
+                    <select id="event-select">
+                        <option value="">Select an event</option>
+                    </select>
+                    <button onclick="registerForSelectedEvent()">Register</button>
+                    <div id="qr-code-container"></div>
+                </div>
+            </div>
+
+            <!-- Announcements Section -->
+            <div id="announcements-section" class="calculator-section" style="display: none;">
+                <div class="section-header">
+                    <h2>University Announcements</h2>
+                    <button class="back-btn" onclick="hideSection('announcements')"><i class="fas fa-arrow-left"></i> Back</button>
+                </div>
+
+                <div id="announcements-loading" class="loading-spinner">
+                    <i class="fas fa-spinner fa-spin"></i> Loading announcements...
+                </div>
+                
+                <ul id="announcements-list" class="announcements-list">
+                    <!-- Announcements will be dynamically loaded here -->
+                </ul>
+            </div>
+        </main>
+
+
+        
+
+        <footer class="app-footer">
+            <p>&copy; 2023 Veltech University. Designed & Developed by Sharvesh Sanjay M (VTU26384)</p>
+            <div class="footer-links">
+                <a href="#" onclick="showSection('about')">About</a>
+                <a href="#" onclick="showSection('feedback')">Feedback</a>
+                <a href="#" onclick="showSection('settings')">Settings</a>
+            </div>
+            <button id="admin-login-btn" class="admin-btn" onclick="showAdminLogin()">
+                <i class="fas fa-lock"></i>
+            </button>
+        </footer>
+    </div>
+
+    <!-- Admin Login Button (visible to all) -->
+    
+
+    <!-- Admin Login Modal -->
+    <div id="admin-login-modal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <span class="close" onclick="closeAdminLogin()">&times;</span>
+            <h2>Admin Login</h2>
+            <input type="email" id="admin-email" placeholder="Admin Email">
+            <input type="password" id="admin-password" placeholder="Password">
+            <button onclick="adminLogin()">Login</button>
+            <p id="admin-login-error" class="error-message"></p>
+        </div>
+    </div>
+
+    <!-- Admin Panel (hidden until login) -->
+    <div id="admin-panel" class="admin-panel" style="display:none;">
+        <div class="admin-header">
+            <h2>Admin Controls</h2>
+            <button class="admin-close" onclick="adminLogout()">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </button>
+        </div>
+        
+        <div class="admin-tabs">
+            <button class="admin-tab active" onclick="showAdminTab('events')">Manage Events</button>
+            <button class="admin-tab" onclick="showAdminTab('announcements')">Manage Announcements</button>
+        </div>
+        
+        <div id="admin-events-tab" class="admin-tab-content active">
+            <h3>Add New Event</h3>
+            <div class="admin-form">
+                <div class="form-group">
+                    <label for="event-name">Event Name</label>
+                    <input type="text" id="event-name" placeholder="Enter event name">
+                </div>
+                <div class="form-group">
+                    <label for="event-date">Date</label>
+                    <input type="date" id="event-date">
+                </div>
+                <div class="form-group">
+                    <label for="event-time">Time</label>
+                    <input type="time" id="event-time">
+                </div>
+                <div class="form-group">
+                    <label for="event-location">Location</label>
+                    <input type="text" id="event-location" placeholder="Enter location">
+                </div>
+                <div class="form-group">
+                    <label for="event-department">Department</label>
+                    <select id="event-department">
+                        <option value="general">General</option>
+                        <option value="CSE">CSE</option>
+                        <option value="ECE">ECE</option>
+                        <option value="MECH">Mechanical</option>
+                        <option value="EEE">EEE</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="event-year">Target Year</label>
+                    <select id="event-year">
+                        <option value="all">All Years</option>
+                        <option value="1">1st Year</option>
+                        <option value="2">2nd Year</option>
+                        <option value="3">3rd Year</option>
+                        <option value="4">4th Year</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="event-description">Description</label>
+                    <textarea id="event-description" placeholder="Enter event description"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="event-registration-link">Registration Link (optional)</label>
+                    <input type="url" id="event-registration-link" placeholder="https://example.com">
+                </div>
+                <button class="admin-submit-btn" onclick="addEvent()">Add Event</button>
+                <p id="event-error" class="error-message"></p>
+            </div>
+            
+            <h3>Existing Events</h3>
+            <div id="admin-events-list" class="admin-list">
+                <!-- Events will be loaded here -->
+                <div class="loading-spinner">
+                    <i class="fas fa-spinner fa-spin"></i> Loading events...
+                </div>
+            </div>
+        </div>
+        
+        <div id="admin-announcements-tab" class="admin-tab-content">
+            <h3>Add New Announcement</h3>
+            <div class="admin-form">
+                <div class="form-group">
+                    <label for="announcement-title">Title</label>
+                    <input type="text" id="announcement-title" placeholder="Enter announcement title">
+                </div>
+                <div class="form-group">
+                    <label for="announcement-content">Content</label>
+                    <textarea id="announcement-content" placeholder="Enter announcement content"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="announcement-priority">Priority</label>
+                    <select id="announcement-priority">
+                        <option value="normal">Normal</option>
+                        <option value="high">High</option>
+                        <option value="urgent">Urgent</option>
+                    </select>
+                </div>
+                <button class="admin-submit-btn" onclick="addAnnouncement()">Add Announcement</button>
+                <p id="announcement-error" class="error-message"></p>
+            </div>
+            
+            <h3>Existing Announcements</h3>
+            <div id="admin-announcements-list" class="admin-list">
+                <!-- Announcements will be loaded here -->
+                <div class="loading-spinner">
+                    <i class="fas fa-spinner fa-spin"></i> Loading announcements...
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "EducationalOrganization",
+          "name": "Veltech Student Toolkit",
+          "url": "https://toolkitvtu.netlify.app/",
+          "logo": "https://toolkitvtu.netlify.app/logos/logo.png",
+          "description": "A one-stop solution for Veltech University students to calculate GPA, CGPA, track attendance, and check campus events.",
+          "sameAs": [
+            "https://www.instagram.com/veltechuniversity/",
+            "https://www.linkedin.com/school/veltechuniversity/"
+          ]
+        }
+        </script>
+        
+    <!-- Initialize Firebase -->
+    <script src="firebase-config.js"></script>
+</body>
+</html>

@@ -1,0 +1,717 @@
+:root {
+    /* Professional University Color Palette */
+    --primary: #0a369d; /* University Blue */
+    --primary-light: #3a56b0;
+    --primary-dark: #07206d;
+    --secondary: #8a8d93; /* Cool Gray */
+    --accent: #e6af2e; /* Gold Accent */
+    --accent-dark: #c79824;
+    --light: #f8f9fa;
+    --dark: #212529;
+    --success: #28a745;
+    --warning: #ffc107;
+    --danger: #dc3545;
+    --info: #17a2b8;
+    --text: #333333;
+    --bg: #ffffff;
+    --card-bg: #ffffff;
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.12);
+    --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    --border-radius: 10px;
+    --header-height: 80px;
+}
+
+/* Modern Typography */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Header - Professional University Branding */
+.app-header {
+    background: var(--bg);
+    height: var(--header-height);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.logo-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.logo-icon {
+    height: 50px;
+    width: auto;
+    object-fit: contain;
+}
+
+.logo-icon1 {
+    height: 45px;
+    width: auto;
+    object-fit: contain;
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
+    padding: 0 2rem;
+}
+
+.logo-text h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 0.25rem;
+    letter-spacing: -0.5px;
+}
+
+.subtitle {
+    font-size: 0.9rem;
+    color: var(--secondary);
+    font-weight: 400;
+    letter-spacing: 0.3px;
+}
+
+/* Main Content Area */
+.app-main {
+    min-height: calc(100vh - var(--header-height) - 100px);
+    max-width: 1200px;
+    width: 100%;
+    margin: 2rem auto;
+    padding: 0 2rem;
+}
+
+/* Cards - Professional Redesign */
+.main-menu {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+.menu-card {
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    text-align: center;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.menu-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-hover);
+}
+
+.menu-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--primary);
+}
+
+/* Card Color Variations */
+.menu-card.gpa::after { background: var(--primary); }
+.menu-card.cgpa::after { background: var(--success); }
+.menu-card.attendance::after { background: var(--warning); }
+.menu-card.internals::after { background: var(--accent); }
+.menu-card.events::after { background: var(--info); }
+.menu-card.announcements::after { background: var(--danger); }
+
+.card-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Card Icon Colors */
+.menu-card.gpa .card-icon { background: var(--primary); }
+.menu-card.cgpa .card-icon { background: var(--success); }
+.menu-card.attendance .card-icon { background: var(--warning); }
+.menu-card.internals .card-icon { background: var(--accent); }
+.menu-card.events .card-icon { background: var(--info); }
+.menu-card.announcements .card-icon { background: var(--danger); }
+
+.menu-card h2 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: var(--dark);
+    font-weight: 600;
+}
+
+.menu-card p {
+    color: var(--secondary);
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.card-footer {
+    color: var(--primary);
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Calculator Sections - Professional Forms */
+.calculator-section {
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    padding: 2.5rem;
+    box-shadow: var(--shadow);
+    margin-bottom: 3rem;
+    border: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.section-header h2 {
+    font-size: 1.8rem;
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.back-btn {
+    background: var(--light);
+    color: var(--primary);
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.back-btn:hover {
+    background: #e9ecef;
+    transform: translateX(-3px);
+}
+
+/* Form Styles */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.75rem;
+    font-weight: 500;
+    color: var(--dark);
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 0.85rem 1.25rem;
+    border: 1px solid #e0e0e0;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    transition: var(--transition);
+    background: var(--light);
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(10, 54, 157, 0.1);
+}
+
+button {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 0.85rem 1.5rem;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: var(--transition);
+    width: 100%;
+    margin-top: 0.5rem;
+}
+
+button:hover {
+    background: var(--primary-light);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(10, 54, 157, 0.2);
+}
+
+/* Results Display */
+.result-container {
+    background: rgba(10, 54, 157, 0.05);
+    border-radius: var(--border-radius);
+    padding: 2.5rem;
+    text-align: center;
+    margin-top: 2rem;
+    border: 1px solid rgba(10, 54, 157, 0.1);
+}
+
+.result-value {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 1rem 0;
+}
+
+.result-label {
+    font-size: 1.2rem;
+    color: var(--secondary);
+    font-weight: 500;
+}
+
+/* Events Section - Professional Redesign */
+#events-section {
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    padding: 2.5rem;
+    box-shadow: var(--shadow);
+    margin-bottom: 3rem;
+    border: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+#events-section h2 {
+    color: var(--primary);
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    font-weight: 600;
+    position: relative;
+    padding-bottom: 0.75rem;
+}
+
+#events-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: var(--accent);
+}
+
+.events-list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.events-list li {
+    background: var(--bg);
+    padding: 1.75rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    transition: var(--transition);
+    border-left: 3px solid var(--primary);
+}
+
+.events-list li:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.event-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 0.75rem;
+}
+
+.event-date {
+    display: inline-block;
+    background: rgba(10, 54, 157, 0.1);
+    color: var(--primary);
+    padding: 0.3rem 0.9rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+.event-description {
+    color: var(--secondary);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.event-time {
+    display: flex;
+    align-items: center;
+    color: var(--secondary);
+    font-size: 0.9rem;
+    margin-top: 1rem;
+}
+
+.event-time i {
+    margin-right: 0.5rem;
+    color: var(--primary);
+}
+
+/* Announcements Section - Professional Redesign */
+.announcements-section {
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    padding: 2.5rem;
+    box-shadow: var(--shadow);
+    margin-top: 2rem;
+    border: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.announcements-section h2 {
+    color: var(--primary);
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    font-weight: 600;
+    position: relative;
+    padding-bottom: 0.75rem;
+}
+
+.announcements-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: var(--accent);
+}
+
+#announcements-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#announcements-list li {
+    padding: 1.75rem;
+    margin-bottom: 1.5rem;
+    border-radius: var(--border-radius);
+    background: var(--bg);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    transition: var(--transition);
+    border-left: 3px solid var(--accent);
+}
+
+#announcements-list li:hover {
+    transform: translateX(5px);
+}
+
+.announcement-title {
+    color: var(--dark);
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.announcement-date {
+    font-size: 0.85rem;
+    color: var(--secondary);
+    margin-bottom: 0.75rem;
+    display: block;
+    font-weight: 500;
+}
+
+.announcement-content {
+    font-size: 0.95rem;
+    color: var(--text);
+    line-height: 1.6;
+}
+
+/* Footer - Professional Redesign */
+.app-footer {
+    text-align: center;
+    padding: 2.5rem;
+    color: var(--secondary);
+    font-size: 0.9rem;
+    margin-top: 3rem;
+    background: var(--light);
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    position: relative;
+}
+
+.footer-links {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.footer-links a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.footer-links a:hover {
+    color: var(--primary-dark);
+    text-decoration: underline;
+}
+
+/* Admin Button - Discreet Professional */
+.admin-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    transition: var(--transition);
+}
+
+.admin-btn:hover {
+    transform: scale(1.1);
+    background: var(--primary-light);
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    z-index: 1100;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background: var(--bg);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--secondary);
+}
+
+/* Admin Panel */
+.admin-panel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    max-width: 450px;
+    height: 100vh;
+    background: var(--bg);
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    z-index: 1200;
+    overflow-y: auto;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+}
+
+.admin-panel.show {
+    transform: translateX(0);
+}
+
+.admin-header {
+    padding: 1.5rem;
+    background: var(--primary);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.admin-close {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.admin-tabs {
+    display: flex;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.admin-tab {
+    flex: 1;
+    padding: 1rem;
+    text-align: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    transition: var(--transition);
+    border-bottom: 3px solid transparent;
+}
+
+.admin-tab.active {
+    border-bottom-color: var(--primary);
+    color: var(--primary);
+}
+
+.admin-tab-content {
+    padding: 1.5rem;
+    display: none;
+}
+
+.admin-tab-content.active {
+    display: block;
+}
+
+.admin-list {
+    margin-top: 1.5rem;
+}
+
+.error-message {
+    color: var(--danger);
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.loading-spinner {
+    text-align: center;
+    padding: 1rem;
+    color: var(--secondary);
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .logo-text h1 {
+        font-size: 1.5rem;
+    }
+    
+    .logo-icon1 {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-menu {
+        grid-template-columns: 1fr;
+    }
+    
+    .logo-container {
+        padding: 0 1rem;
+    }
+    
+    .logo-text {
+        padding: 0 1rem;
+    }
+    
+    .calculator-section, 
+    #events-section,
+    .announcements-section {
+        padding: 1.75rem;
+    }
+    
+    .section-header h2 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .app-main {
+        padding: 0 1rem;
+    }
+    
+    .logo-text h1 {
+        font-size: 1.3rem;
+    }
+    
+    .subtitle {
+        font-size: 0.8rem;
+    }
+    
+    .menu-card {
+        padding: 1.5rem;
+    }
+    
+    .card-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+    }
+}
+
+/* Animation Enhancements */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.calculator-section.active {
+    animation: fadeIn 0.4s ease-out;
+}
