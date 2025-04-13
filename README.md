@@ -2,8 +2,6 @@
 
 > A comprehensive, user-friendly web application to empower Veltech University students by helping them manage their academic progress and stay updated with campus events and announcements.
 
-![Veltech Student Toolkit Banner](https://toolkitvtu.netlify.app/logos/logo.png)
-
 ## ✨ Features
 
 🔢 **GPA Calculator**  
